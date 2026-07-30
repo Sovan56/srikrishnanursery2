@@ -1,5 +1,6 @@
 import React from 'react';
 import { useApp } from '../context/AppContext';
+import { PlantImage } from '../components/PlantImage';
 import { 
   MapPin, 
   ShieldCheck, 
@@ -66,11 +67,11 @@ export const AboutPage: React.FC = () => {
 
         <div className="lg:col-span-5 relative">
           <div className="rounded-2xl overflow-hidden shadow-lg border-4 border-stone-100">
-            <img 
+            <PlantImage 
               src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=800&q=80" 
               alt="Sri Krishna Nursery Shade Canopy" 
-              referrerPolicy="no-referrer"
-              className="w-full h-80 object-cover"
+              fallbackCategory="Nursery Shade Canopy"
+              className="w-full h-80"
             />
           </div>
         </div>
@@ -121,11 +122,11 @@ export const AboutPage: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           {gallery.slice(0, 3).map((item) => (
             <div key={item.id} className="rounded-2xl overflow-hidden border border-stone-200 bg-white shadow-xs">
-              <img 
+              <PlantImage 
                 src={item.image} 
                 alt={item.title} 
-                referrerPolicy="no-referrer"
-                className="w-full h-48 object-cover"
+                fallbackCategory={item.category}
+                className="w-full h-48"
               />
               <div className="p-4 space-y-1">
                 <h4 className="text-xs font-bold text-stone-900">{item.title}</h4>
