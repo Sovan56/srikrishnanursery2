@@ -1,5 +1,6 @@
 import React from 'react';
 import { useApp } from '../context/AppContext';
+import { PlantImage } from '../components/PlantImage';
 import { 
   ArrowRight, 
   Phone, 
@@ -25,7 +26,7 @@ export const HomePage: React.FC = () => {
     {
       title: 'Indoor',
       count: '40+ Varieties',
-      image: 'https://images.unsplash.com/photo-1593482892290-f54927ae1bf6?auto=format&fit=crop&w=800&q=80',
+      image: 'https://images.unsplash.com/photo-1509423350716-97f9360b4e09?auto=format&fit=crop&w=800&q=80',
       icon: <Sprout className="w-5 h-5 text-emerald-600" />,
       desc: 'Air-purifying snake plants, money plants, monstera, and ZZ plants.'
     },
@@ -181,13 +182,13 @@ export const HomePage: React.FC = () => {
 
           <div className="lg:col-span-5 relative">
             <div className="relative rounded-2xl overflow-hidden shadow-lg border-2 border-white">
-              <img 
+              <PlantImage 
                 src="https://images.unsplash.com/photo-1592150621744-aca64f48394a?auto=format&fit=crop&w=800&q=80"
                 alt="Indoor & Outdoor plants at Sri Krishna Nursery"
-                referrerPolicy="no-referrer"
-                className="w-full h-72 object-cover"
+                fallbackCategory="Nursery Garden"
+                className="w-full h-72"
               />
-              <div className="absolute bottom-3 left-3 right-3 bg-stone-900/80 backdrop-blur-md p-3 rounded-xl text-white text-xs">
+              <div className="absolute bottom-3 left-3 right-3 bg-stone-900/80 backdrop-blur-md p-3 rounded-xl text-white text-xs z-10">
                 <p className="font-bold text-amber-300">Open Daily: 8:00 AM – 6:00 PM</p>
                 <p className="text-[11px] text-stone-300">Phase II, Sanjeevinagar, Huskur Village, Bengaluru</p>
               </div>
@@ -215,13 +216,13 @@ export const HomePage: React.FC = () => {
               className="group cursor-pointer bg-white rounded-2xl overflow-hidden border border-stone-200/80 shadow-xs hover:shadow-xl hover:border-emerald-500/50 transition-all duration-300 flex flex-col"
             >
               <div className="relative h-44 overflow-hidden bg-stone-100">
-                <img 
+                <PlantImage 
                   src={cat.image} 
                   alt={cat.title}
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  fallbackCategory={cat.title}
+                  className="w-full h-full group-hover:scale-110 transition-transform duration-500"
                 />
-                <span className="absolute top-3 right-3 px-2.5 py-1 bg-stone-900/80 backdrop-blur-sm text-white text-[11px] font-bold rounded-lg">
+                <span className="absolute top-3 right-3 px-2.5 py-1 bg-stone-900/80 backdrop-blur-sm text-white text-[11px] font-bold rounded-lg z-10">
                   {cat.count}
                 </span>
               </div>
@@ -276,13 +277,13 @@ export const HomePage: React.FC = () => {
               >
                 <div>
                   <div className="relative h-44 bg-stone-100">
-                    <img 
+                    <PlantImage 
                       src={product.image} 
                       alt={product.name}
-                      referrerPolicy="no-referrer"
-                      className="w-full h-full object-cover"
+                      fallbackCategory={product.category}
+                      className="w-full h-full"
                     />
-                    <span className="absolute top-3 left-3 px-2.5 py-0.5 bg-emerald-100 text-emerald-900 font-bold text-[10px] rounded-md uppercase">
+                    <span className="absolute top-3 left-3 px-2.5 py-0.5 bg-emerald-100/90 backdrop-blur-sm text-emerald-900 font-bold text-[10px] rounded-md uppercase z-10">
                       {product.category}
                     </span>
                   </div>
