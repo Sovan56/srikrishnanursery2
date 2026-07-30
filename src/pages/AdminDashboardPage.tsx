@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
+import { PlantImage } from '../components/PlantImage';
 import { 
   Package, 
   Settings, 
@@ -46,7 +47,7 @@ export const AdminDashboardPage: React.FC = () => {
   const [prodCategory, setProdCategory] = useState<ProductCategory>('Indoor');
   const [prodDesc, setProdDesc] = useState('');
   const [prodPrice, setProdPrice] = useState('₹150 – ₹300');
-  const [prodImage, setProdImage] = useState('https://images.unsplash.com/photo-1593482892290-f54927ae1bf6?auto=format&fit=crop&w=800&q=80');
+  const [prodImage, setProdImage] = useState('https://images.unsplash.com/photo-1509423350716-97f9360b4e09?auto=format&fit=crop&w=800&q=80');
   const [prodFeatured, setProdFeatured] = useState(false);
   const [prodInStock, setProdInStock] = useState(true);
 
@@ -59,7 +60,7 @@ export const AdminDashboardPage: React.FC = () => {
     setProdCategory('Indoor');
     setProdDesc('');
     setProdPrice('₹150 – ₹300');
-    setProdImage('https://images.unsplash.com/photo-1593482892290-f54927ae1bf6?auto=format&fit=crop&w=800&q=80');
+    setProdImage('https://images.unsplash.com/photo-1509423350716-97f9360b4e09?auto=format&fit=crop&w=800&q=80');
     setProdFeatured(false);
     setProdInStock(true);
     setIsProductModalOpen(true);
@@ -114,7 +115,7 @@ export const AdminDashboardPage: React.FC = () => {
 
   // Preset image URLs helper for quick admin selection
   const presetImages = [
-    { label: 'Indoor Foliage', url: 'https://images.unsplash.com/photo-1593482892290-f54927ae1bf6?auto=format&fit=crop&w=800&q=80' },
+    { label: 'Indoor Foliage', url: 'https://images.unsplash.com/photo-1509423350716-97f9360b4e09?auto=format&fit=crop&w=800&q=80' },
     { label: 'Areca Palm', url: 'https://images.unsplash.com/photo-1592150621744-aca64f48394a?auto=format&fit=crop&w=800&q=80' },
     { label: 'Flowering Plant', url: 'https://images.unsplash.com/photo-1596547609652-9cf5d8d76921?auto=format&fit=crop&w=800&q=80' },
     { label: 'Fruit Saplings', url: 'https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=800&q=80' },
@@ -306,11 +307,11 @@ export const AdminDashboardPage: React.FC = () => {
                 {products.map((p) => (
                   <tr key={p.id} className="hover:bg-stone-50/80 transition-colors">
                     <td className="p-3 flex items-center gap-3">
-                      <img 
+                      <PlantImage 
                         src={p.image} 
                         alt={p.name} 
-                        referrerPolicy="no-referrer"
-                        className="w-10 h-10 object-cover rounded-lg border border-stone-200"
+                        fallbackCategory={p.category}
+                        className="w-10 h-10 rounded-lg border border-stone-200 shrink-0"
                       />
                       <div>
                         <p className="font-bold text-stone-900">{p.name}</p>
@@ -571,12 +572,18 @@ export const AdminDashboardPage: React.FC = () => {
 
               <div>
                 <label className="block font-bold text-stone-700 mb-1">Image URL</label>
-                <input
-                  type="url"
-                  value={prodImage}
-                  onChange={(e) => setProdImage(e.target.value)}
-                  className="w-full px-3.5 py-2 rounded-xl border border-stone-300 mb-2"
-                />
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-12 h-12 rounded-xl overflow-hidden bg-stone-100 border border-stone-200 shrink-0">
+                    <PlantImage src={prodImage} alt="Preview" fallbackCategory={prodCategory} className="w-full h-full" />
+                  </div>
+                  <input
+                    type="url"
+                    value={prodImage}
+                    onChange={(e) => setProdImage(e.target.value)}
+                    placeholder="https://..."
+                    className="flex-1 px-3.5 py-2 rounded-xl border border-stone-300 text-xs"
+                  />
+                </div>
 
                 <div className="space-y-1">
                   <p className="text-[10px] text-stone-500 font-semibold">Or select a sample thumbnail preset:</p>
