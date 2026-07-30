@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { useApp } from '../context/AppContext';
+import { PlantImage } from '../components/PlantImage';
 import { 
   Search, 
   Filter, 
@@ -164,17 +165,17 @@ export const ProductsPage: React.FC = () => {
               <div>
                 {/* Product Thumbnail */}
                 <div className="relative h-48 bg-stone-100 overflow-hidden">
-                  <img
+                  <PlantImage
                     src={product.image}
                     alt={`${product.name} at Sri Krishna Nursery`}
-                    referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    fallbackCategory={product.category}
+                    className="w-full h-full group-hover:scale-105 transition-transform duration-300"
                   />
-                  <span className="absolute top-3 left-3 px-2.5 py-0.5 bg-stone-900/80 backdrop-blur-sm text-white text-[10px] font-bold rounded-md uppercase">
+                  <span className="absolute top-3 left-3 px-2.5 py-0.5 bg-stone-900/80 backdrop-blur-sm text-white text-[10px] font-bold rounded-md uppercase z-10">
                     {product.category}
                   </span>
                   {product.featured && (
-                    <span className="absolute top-3 right-3 px-2 py-0.5 bg-amber-400 text-stone-900 font-bold text-[10px] rounded-md shadow-xs">
+                    <span className="absolute top-3 right-3 px-2 py-0.5 bg-amber-400 text-stone-900 font-bold text-[10px] rounded-md shadow-xs z-10">
                       Popular Choice
                     </span>
                   )}

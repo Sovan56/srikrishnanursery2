@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
+import { PlantImage } from '../components/PlantImage';
 import { Maximize2, X, ChevronLeft, ChevronRight, Image as ImageIcon } from 'lucide-react';
 import { GalleryItem } from '../types';
 
@@ -80,18 +81,18 @@ export const GalleryPage: React.FC = () => {
             className="group cursor-pointer bg-white rounded-2xl overflow-hidden border border-stone-200 shadow-xs hover:shadow-xl transition-all duration-300 relative flex flex-col justify-between"
           >
             <div className="relative h-60 bg-stone-100 overflow-hidden">
-              <img
+              <PlantImage
                 src={item.image}
                 alt={item.title}
-                referrerPolicy="no-referrer"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                fallbackCategory={item.category}
+                className="w-full h-full group-hover:scale-105 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-stone-950/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+              <div className="absolute inset-0 bg-stone-950/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center z-10">
                 <span className="p-3 rounded-full bg-white/90 text-stone-900 shadow-lg">
                   <Maximize2 className="w-5 h-5" />
                 </span>
               </div>
-              <span className="absolute top-3 left-3 px-2.5 py-0.5 bg-stone-900/80 backdrop-blur-sm text-white text-[10px] font-bold rounded-md">
+              <span className="absolute top-3 left-3 px-2.5 py-0.5 bg-stone-900/80 backdrop-blur-sm text-white text-[10px] font-bold rounded-md z-10">
                 {item.category}
               </span>
             </div>
