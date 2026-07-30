@@ -1,0 +1,6 @@
+{
+  "name": "Sri Krishna Nursery & Farm",
+  "description": "Wholesale plant nursery website & admin panel in Bengaluru, featuring indoor & outdoor plants, fruit trees, and garden supplies.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
